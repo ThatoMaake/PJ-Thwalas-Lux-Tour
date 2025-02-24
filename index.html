@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>PJ THWALAS - Login</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure full height */
+        }
+
+        .container {
+            flex: 1; /* Ensures content grows and takes available space */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 3em;
+            margin: 0;
+        }
+
+        header p {
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        /* Login Form */
+        .login-form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+        }
+
+        .login-form label {
+            display: block;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .login-form .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .login-form .checkbox-container input {
+            margin-right: 10px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #218838;
+        }
+
+        .login-form .info-text {
+            text-align: center;
+            font-size: 1em;
+            color: #777;
+        }
+
+        .login-form a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        /* Animation for Form */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-form {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Sticky Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            margin-top: auto; /* Push the footer to the bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+    </style>
+
+    <script>
+        // Enhanced Login Function with Validation
+        function handleLogin(event) {
+            event.preventDefault(); // Prevents the form from submitting the traditional way
+
+            var fname = document.getElementById('fname').value.trim();
+            var lname = document.getElementById('lname').value.trim();
+
+            // Example validation with regex for name format
+            var namePattern = /^[A-Za-z]+$/;
+
+            if (!fname || !lname) {
+                alert('Please fill out both fields.');
+            } else if (!namePattern.test(fname) || !namePattern.test(lname)) {
+                alert('Please enter valid names (letters only).');
+            } else {
+                // Store user data in localStorage for future use
+                localStorage.setItem('FirstName', fname);
+                localStorage.setItem('LastName', lname);
+
+                // Redirect to the buses page
+                window.location.href = 'Buses.html'; // Replace with actual path to your buses page
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Best Transport Company!</h1>
+            <p>Traveling across the globe, together...</p>
+        </header>
+
+        <main>
+            <section class="login-form">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <fieldset>
+                        <label for="fname">First Name:</label>
+                        <input type="text" id="fname" name="fname" required>
+
+                        <label for="lname">Last Name:</label>
+                        <input type="text" id="lname" name="lname" required>
+
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+
+                        <button type="submit">Login</button>
+                        <p class="info-text">Please click "Login" to access your account.</p>
+                    </fieldset>
+                </form>
+
+                <h3>Don't have an account? <a href="signup.html">Sign up here</a></h3>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2008 PJ Thwalas Lux Tours. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
