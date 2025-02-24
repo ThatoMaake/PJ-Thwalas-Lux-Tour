@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <title>Sign Up</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 3em;
+            margin: 0;
+        }
+
+        /* Sign Up Form */
+        .signup-form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .signup-form h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+        }
+
+        .signup-form label {
+            display: block;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .signup-form input[type="text"]:focus,
+        .signup-form input[type="email"]:focus,
+        .signup-form input[type="password"]:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        .signup-form .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .signup-form .checkbox-container input {
+            margin-right: 10px;
+        }
+
+        .signup-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-form button:hover {
+            background-color: #218838;
+        }
+
+        .signup-form .info-text {
+            text-align: center;
+            font-size: 1em;
+            color: #777;
+        }
+
+        .signup-form a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        .signup-form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .signup-form {
+                padding: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Create Your Account</h1>
+            <p>Join our platform and start your journey!</p>
+        </header>
+
+        <main>
+            <section class="signup-form">
+                <h2>Sign Up</h2>
+                <form id="signup-form" onsubmit="handleSignup(event)">
+                    <fieldset>
+                        <label for="fname">First Name:</label>
+                        <input type="text" id="fname" name="fname" required>
+
+                        <label for="lname">Last Name:</label>
+                        <input type="text" id="lname" name="lname" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+
+                            <input type="checkbox" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>
+                        </div>
+
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the terms and conditions</label>
+                        </div>
+
+                        <button type="submit">Register</button>
+                    </fieldset>
+                </form>
+
+                <h3>Already have an account? <a href="index.html">Login here</a></h3>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2008 PJ Thwalas Lux Tours. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function handleSignup(event) {
+            event.preventDefault(); // Prevents the form from submitting the traditional way
+
+            const fname = document.getElementById('fname').value.trim();
+            const lname = document.getElementById('lname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const terms = document.getElementById('terms').checked;
+
+            // Validate the form data
+            if (!fname || !lname || !email || !password || !gender || !terms) {
+                alert('Please fill in all fields and agree to the terms and conditions.');
+                return;
+            }
+
+            // Example: Store user data in localStorage (for demonstration)
+            localStorage.setItem('FirstName', fname);
+            localStorage.setItem('LastName', lname);
+            localStorage.setItem('Email', email);
+
+            // Redirect after successful registration
+            window.location.href = 'Buses.html'; // Replace with your actual target URL
+        }
+    </script>
+</body>
+
+</html>
